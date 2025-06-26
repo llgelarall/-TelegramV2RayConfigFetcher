@@ -1,0 +1,105 @@
+
+---
+
+## 🧠 Full Code With Comments
+
+```python
+import asyncio
+import requests
+import re
+from datetime import datetime
+from telegram import Bot, InputFile
+from telegram.request import HTTPXRequest
+
+# --- Settings ---
+URLS = [
+    'https://raw.githubusercontent.com/Aclashv2rayfree/clashfree/main/README.md',  # Add more URLs as needed
+]
+
+TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'  # Replace with your actual bot token
+CHAT_ID = '@your_channel_or_user_id'  # Replace with @channel_username or your Telegram user ID
+
+# --- Fetch proxy configurations from a URL ---
+def fetch_configs(url):
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        # Match all known proxy link formats (vless, vmess, etc.)
+        pattern = re.compile(r'(?:ss|vless|vmess|trojan|hysteria2)://[^\s<>"]+', re.IGNORECASE)
+        return re.findall(pattern, response.text)
+    except Exception as e:
+        print(f"❌ Failed to fetch configs from {url}: {e}")
+        return []
+
+# --- Send long messages in chunks under Telegram limit (optional) ---
+async def send_chunks(configs, bot):
+    MAX_LEN = 4096
+    buffer = ''
+
+    for line in configs:
+        if len(buffer) + len(line) + 1 > MAX_LEN:
+            try:
+                await bot.send_message(chat_id=CHAT_ID, text=buffer)
+                await asyncio.sleep(2)  # Avoid flooding
+            except Exception as e:
+                print("❌ Failed to send chunk:", e)
+            buffer = ''
+        buffer += line + '\n'
+
+    # Send remaining buffer if any
+    if buffer:
+        try:
+            await bot.send_message(chat_id=CHAT_ID, text=buffer)
+        except Exception as e:
+            print("❌ Failed to send final chunk:", e)
+
+# --- Save configs to a local file ---
+def save_to_file(configs, filename):
+    try:
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write("\n".join(configs))
+        print(f"✅ File saved as {filename}")
+    except Exception as e:
+        print(f"❌ Failed to save file locally: {e}")
+
+# --- Send the config file to Telegram ---
+async def send_file(configs, bot):
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
+    filename = f"configs_{timestamp}.txt"
+    save_to_file(configs, filename)
+
+    try:
+        with open(filename, "rb") as f:
+            await bot.send_document(chat_id=CHAT_ID, document=InputFile(f), filename=filename)
+            await bot.send_message(chat_id=CHAT_ID, text="✅ Configs file sent successfully.")
+            print("✅ File sent to Telegram.")
+    except Exception as e:
+        print("❌ Failed to send file:", e)
+
+# --- Main async task ---
+async def main():
+    request = HTTPXRequest(connect_timeout=20, read_timeout=20)
+    bot = Bot(token=TOKEN, request=request)
+
+    all_configs = []
+    for url in URLS:
+        print(f"Fetching from {url}")
+        configs = fetch_configs(url)
+        if configs:
+            print(f"✅ Found {len(configs)} configs.")
+            all_configs.extend(configs)
+        else:
+            print("⚠️ No configs found in this URL.")
+
+    if not all_configs:
+        print("❌ No configs found in any URL.")
+    else:
+        # Optionally, you can choose to send as text chunks
+        # await send_chunks(all_configs, bot)
+
+        # Recommended: send as a file
+        await send_file(all_configs, bot)
+
+# --- Run script ---
+if __name__ == "__main__":
+    asyncio.run(main())
