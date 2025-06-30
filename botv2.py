@@ -30,7 +30,7 @@ MODE              = "op"          # "test" or "op" (op = upload to Telegram)
 
 # --- Xray-core Path (MANDATORY) ---
 # 🔴 SET THIS TO THE PATH OF YOUR XRAY EXECUTABLE
-XRAY_PATH         = "D:\\jupyter\\bot\\v2rayN-windows-64\\bin\\xray\\xray.exe" # e.g., "C:\\Users\\user\\Desktop\\xray.exe" on Windows or "/home/user/xray/xray" on Linux
+XRAY_PATH         = "..\\2rayN-windows-64\\bin\\xray\\xray.exe" # e.g., "C:\\Users\\user\\Desktop\\xray.exe" on Windows or "/home/user/xray/xray" on Linux
 
 # --- Performance & Filtering ---
 PROBES_PER_NODE   = 1             # Number of tests per proxy (1 is usually enough for speed testing)
@@ -47,54 +47,12 @@ PING_TEST_URL     = "https://www.google.com/generate_204" # A small, fast URL fo
 SPEED_TEST_URL    = "http://cachefly.cachefly.net/10mb.test" # A 10MB file for speed testing
 
 # --- Telegram Settings ---
-TOKEN   = "7794070814:AAEs2w_XcAI_IrO_dhIahxcV-CfZL2Z8EFU"
-CHAT_ID = "@glarasvlessbot"
+TOKEN   = "YOUR TOKEN"
+CHAT_ID = "YOUR CHATID"
 
 # --- Source URLs ---
 URLS = [
-    # ---- collectors ----
-    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/vmess",
-    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/trojan",
-    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/ss",
-    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/vless",
-    # ---- large mixed lists ----
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/vmess.txt",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/vless.txt",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/trojan.txt",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/shadowsocks.txt",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/other.txt",
-    "https://raw.githubusercontent.com/sinavm/SVM/main/subscriptions/xray/normal/vless",
-    "https://raw.githubusercontent.com/sinavm/SVM/main/subscriptions/xray/normal/reality",
-    "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/super-sub.txt",  # ← comma fixed
-    "https://raw.githubusercontent.com/sinavm/SVM/main/subscriptions/xray/normal/trojan",
-    # ---- misc ----
-    "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/actives.txt",
-    "https://github.com/V2RayRoot/V2RayConfig/blob/main/Config/vmess.txt",
-    "https://github.com/V2RayRoot/V2RayConfig/blob/main/Config/vless.txt",
-    "https://raw.githubusercontent.com/Joker-funland/V2ray-configs/main/config.txt",
-    "https://github.com/Epodonios/v2ray-configs/raw/main/All_Configs_Sub.txt",
-    "https://raw.githubusercontent.com/Epodonios/bulk-xray-v2ray-vless-vmess-trojan-ss-configs/main/sub/Iran/config.txt",
-    "https://raw.githubusercontent.com/SamanGho/v2ray_collector/main/v2tel_links2.txt",
-    "https://raw.githubusercontent.com/hamed1124/port-based-v2ray-configs/main/All-Configs.txt",
-    "https://raw.githubusercontent.com/miladtahanian/V2RayCFGDumper/main/config.txt",
-    "https://raw.githubusercontent.com/skywrt/v2ray-configs/main/All_Configs_Sub.txt",
-    "https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/main/mix/sub.html",
-    "https://raw.githubusercontent.com/Kwinshadow/TelegramV2rayCollector/main/sublinks/mix.txt",
-    "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/full/5ubscrpt10n.txt",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/mixed",
-    "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/All_Configs_Sub.txt",
-    "https://raw.githubusercontent.com/jagger235711/V2rayCollector/main/results/mixed_tested.txt",
-    "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/main/all_configs.txt",
-    "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt",
-    "https://raw.githubusercontent.com/SamanGho/v2ray_collector/main/v2tel_links1.txt",
-    "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/configtg.txt",
-    "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/v2ray/all_sub.txt",
-    "https://raw.githubusercontent.com/miladesign/TelegramV2rayCollector/main/api/normal",
-    "https://raw.githubusercontent.com/MrMohebi/xray-proxy-grabber-telegram/master/collected-proxies/row-url/all.txt",
-    "https://raw.githubusercontent.com/GuoBing1989100/v2ray_configs/main/all.txt",
-    "https://raw.githubusercontent.com/nyeinkokoaung404/V2ray-Configs/main/All_Configs_Sub.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/main/v2ray_configs.txt",
-    "https://raw.githubusercontent.com/barry-far/V2ray-config/main/All_Configs_Sub.txt",
+"..",
 ] # Reduced for brevity, user can add the full list back
 
 LINK_RE = re.compile(r"(?:ss|vmess|vless|trojan)://[^\s<>\"']+", re.I)
