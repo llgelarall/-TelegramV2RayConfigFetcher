@@ -23,20 +23,7 @@ CHAT_ID = "Your ChatID"
 
 URLS = [
     # — your subscription feeds —
-    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/vmess",
-    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/trojan",
-    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/ss",
-    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/vless",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/vmess.txt",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/vless.txt",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/trojan.txt",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/shadowsocks.txt",
-    "https://raw.githubusercontent.com/74647/proxify/main/v2ray_configs/seperated_by_protocol/other.txt",
-    "https://raw.githubusercontent.com/sinavm/SVM/main/subscriptions/xray/normal/vless",
-    "https://raw.githubusercontent.com/sinavm/SVM/main/subscriptions/xray/normal/reality",
-    "https://raw.githubusercontent.com/sinavm/SVM/main/subscriptions/xray/normal/trojan",
-    "https://raw.githubusercontent.com/sinavm/SVM/main/subscriptions/xray/normal/tuic",
-    "https://raw.githubusercontent.com/sinavm/SVM/main/subscriptions/xray/normal/hy2",
+    "".
 ]
 
 LINK_RE = re.compile(r"(?:ss|vmess|vless|trojan|hysteria2)://[^\s<>\"']+", re.I)
